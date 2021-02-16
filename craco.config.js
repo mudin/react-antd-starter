@@ -1,28 +1,47 @@
-const CracoLessPlugin = require('craco-less');
+// const CracoLessPlugin = require('craco-less');
+const CracoAntDesignPlugin = require('craco-antd');
+
+const path = require('path');
+
+const pathResolve = (pathUrl) => path.join(__dirname, pathUrl);
 
 module.exports = {
   plugins: [
+    // {
+    //   plugin: CracoLessPlugin,
+    //   options: {
+    //     lessLoaderOptions: {
+    //       lessOptions: {
+    //         // modifyVars: {
+    //         //   // '@primary-color': '#1DA57A',
+    //         //   hack: `true; @import "styles/theme.less";`
+    //         // },
+    //         javascriptEnabled: true
+    //       }
+    //     }
+    //   }
+    // },
     {
-      plugin: CracoLessPlugin,
+      plugin: CracoAntDesignPlugin,
       options: {
-        lessLoaderOptions: {
-          lessOptions: {
-            modifyVars: { '@primary-color': '#1DA57A' },
-            javascriptEnabled: true
-          }
-        }
+        customizeThemeLessPath: pathResolve('src/styles/theme.less')
       }
     }
-  ],
-  babel: {
-    plugins: [
-      [
-        'import',
-        {
-          libraryName: 'antd',
-          style: true // or 'css'
-        }
-      ]
-    ]
-  }
+  ]
+  // webpack: {
+  //   alias: {
+  //     '@': pathResolve('src')
+  //   }
+  // },
+  // babel: {
+  // plugins: [
+  // [
+  // 'import',
+  // {
+  //   libraryName: 'antd',
+  //   style: true // or 'css'
+  // }
+  // ]
+  // ]
+  // }
 };
